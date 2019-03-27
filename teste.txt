@@ -1,0 +1,4 @@
+variaveis a,b;
+\\comentario
+se enquanto
+(x> 10)

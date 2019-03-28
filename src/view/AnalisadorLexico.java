@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package analisadorlexico;
+package view;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -23,8 +26,23 @@ public class AnalisadorLexico {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
+        
+        //Scanner scanner = new Scanner (new FileReader("teste.txt")).useDelimiter("\\n");
+        
+        
+     FileInputStream entrada = new FileInputStream("teste.txt");
+
+     InputStreamReader entradaFormatada = new InputStreamReader(entrada);
+     
+ 
+     while(entradaFormatada.ready()){
+         
+        int c = entradaFormatada.read();
+        System.out.println((char)c);}
+        
+        
         // TODO code application logic here
-        lerArquivo();
+       // lerArquivo();
     }
     
     public static void lerArquivo() throws FileNotFoundException, IOException{

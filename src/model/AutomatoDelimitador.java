@@ -6,43 +6,42 @@
 package model;
 
 /**
- * Esse automato tem 2 estados;
+ * Esse automato identifica delimitadores da linguagem.
+ *
  * @author sara
  */
-public class AutomatoDelimitador {
-    
-    private int estado;
+public class AutomatoDelimitador extends Automato {
     
     
-    public AutomatoDelimitador(){
-        estado = 0;
-    }
-    
-    public boolean isdelimitado(char c){
+    /** Verifica se um determinado caractere é um um delimitador.
+     * 
+     * @param c
+     * @return 
+     */
+    public boolean isdelimitado(char c) {
         
-        switch (estado){
+        switch(this.estado){
+            
             case(0):{
-                if (c == ';' || c == ',' || c == '.' || c == '(' || c == ')' 
-                        || c == '[' || c == ']' || c == '{' || c == '}'){
+                
+                if (c == ';' || c == ',' || c == '.' || c == '(' || c == ')'|| c == '[' || c == ']' || c == '{' || c == '}')
                     this.estado = 1;
-                }else{
-                    //passar pra outro automato
-                    return false;
-                }                
-                break;      
+                    return true;
             }
             case(1):{
-                    this.estado = 1;
-                    resetarAutomato();
-                    return true;      
+            
+                return false;
             }
-        
         }
+
         return false;
+
     }
 
-    private void resetarAutomato() {
-        this.estado = 0;
+    
+    public boolean isEstadoFinal() {
+        return this.estado == 1;
     }
     
+
 }

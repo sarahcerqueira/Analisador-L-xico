@@ -5,33 +5,30 @@
  */
 package model;
 
-/** Esta classe implementa um automato que reconhece um operador lógico.
+/** Implementa um automato que reconhece operadores relacionais.
  *
  * @author sarah
  */
-public class AutomatoOperLogico  extends Automato {
+public class AutomatoOperRelacionais extends Automato {
     
     
-    /** Verifica se c é um operador lógico.
+    /** Verifica se c é aceito pelo automato que reconhece operadores relacionais.
      * 
      * @param  c
+     * @return 
      */
-    public boolean isOperLogico(char c){
+    public boolean isOperRelacional(char c){
         
         switch(this.estado){
             
             case(0):{
                 
                 if(c == '!'){
-                    this.estado = 3;
-                    return true;
-                    
-                }else if( c == '&'){
-                    this.estado = 1;
-                    return true;
-                    
-                } else if (c == '|'){
                     this.estado = 2;
+                    return true;
+                    
+                }else if( c == '<' || c == '>' | c == '='){
+                    this.estado = 1;
                     return true;
                     
                 }else{
@@ -40,7 +37,7 @@ public class AutomatoOperLogico  extends Automato {
             }
             case(1):{
                 
-                if(c== '&'){
+                if(c== '='){
                     this.estado = 3;
                     return true;
                     
@@ -52,7 +49,7 @@ public class AutomatoOperLogico  extends Automato {
             
             case(2):{
                 
-                if( c == '|'){
+                if( c == '='){
                     this.estado = 3;
                     return true;
                     
@@ -75,7 +72,7 @@ public class AutomatoOperLogico  extends Automato {
 
     @Override
     public boolean isEstadoFinal() {
-        return this.estado == 3;
+        return this.estado == 3 || this.estado == 1;
     }
     
 }

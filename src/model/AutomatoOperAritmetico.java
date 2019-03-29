@@ -5,34 +5,35 @@
  */
 package model;
 
-/** Esta classe implementa um automato que reconhece um operador lógico.
+/** Automato que reconhece operadores aritméticos.
  *
  * @author sarah
  */
-public class AutomatoOperLogico  extends Automato {
+public class AutomatoOperAritmetico extends Automato {
     
     
-    /** Verifica se c é um operador lógico.
+    /** Verifica se c é aceito pelo automato que reconhece operadores aritméticos.
      * 
      * @param  c
+     * @return 
      */
-    public boolean isOperLogico(char c){
+    public boolean isOperAritmetico(char c){
         
         switch(this.estado){
             
             case(0):{
                 
-                if(c == '!'){
+                if(c == '*' || c == '/'){
                     this.estado = 3;
                     return true;
                     
-                }else if( c == '&'){
+                }else if( c == '+'){
                     this.estado = 1;
                     return true;
                     
-                } else if (c == '|'){
+                 }else if( c == '-'){
                     this.estado = 2;
-                    return true;
+                    return true;    
                     
                 }else{
                     return false;
@@ -40,7 +41,7 @@ public class AutomatoOperLogico  extends Automato {
             }
             case(1):{
                 
-                if(c== '&'){
+                if(c== '+'){
                     this.estado = 3;
                     return true;
                     
@@ -52,7 +53,7 @@ public class AutomatoOperLogico  extends Automato {
             
             case(2):{
                 
-                if( c == '|'){
+                if( c == '-'){
                     this.estado = 3;
                     return true;
                     
@@ -75,7 +76,7 @@ public class AutomatoOperLogico  extends Automato {
 
     @Override
     public boolean isEstadoFinal() {
-        return this.estado == 3;
+        return this.estado == 3 || this.estado == 1 || this.estado == 2;
     }
     
 }

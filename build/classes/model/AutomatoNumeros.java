@@ -5,41 +5,45 @@
  */
 package model;
 
-/** Implementa um automato que reconhece operadores relacionais.
+/** Automato que reconhece um número;
  *
  * @author sarah
  */
-public class AutomatoOperRelacionais extends Automato {
+public class AutomatoNumeros extends Automato {
     
     
-    /** Verifica se c é aceito pelo automato que reconhece operadores relacionais.
+    /** Verifica se c é aceito pelo automato que reconhece números.
      * 
      * @param  c
      * @return 
      */
-    public boolean isOperRelacional(char c){
+    public boolean isNumero(char c){
+        
+       int ascii = (int) c;
         
         switch(this.estado){
             
             case(0):{
                 
-                if(c == '!'){
+                if(ascii> 47 && ascii< 58){
                     this.estado = 2;
                     return true;
                     
-                }else if( c == '<' || c == '>' | c == '='){
+                }else if( c == '-' || c == ' '){
                     this.estado = 1;
                     return true;
-                    
+   
                 }else{
                     return false;
                 }
             }
             case(1):{
                 
-                if(c== '='){
-                    this.estado = 3;
+                if(c== ' '){
                     return true;
+                    
+                }else if(ascii> 47 && ascii< 58){
+                    this.estado = 2;
                     
                 }else {
                     return false;
@@ -49,19 +53,37 @@ public class AutomatoOperRelacionais extends Automato {
             
             case(2):{
                 
-                if( c == '='){
-                    this.estado = 3;
+                if( ascii> 47 && ascii< 58){
                     return true;
                     
-                } else{
-                	this.resetAutomato();
+                } else if(c == '.'){
+                    this.estado = 3;
+                    return true;
+                
+                }                
+                else{
                     return false;
                 }
             }
             
             case (3):{
+                
+                if(ascii> 47 && ascii< 58){
+                    this.estado = 4;
+                    return true;
+                } else{
             
-                return false;
+                return false;}
+            }
+            
+            case (4):{
+                
+                if(ascii> 47 && ascii< 58){
+                    return true;
+                } else{
+            
+                return false;}
+            
             }
             
         }
@@ -73,7 +95,7 @@ public class AutomatoOperRelacionais extends Automato {
 
     @Override
     public boolean isEstadoFinal() {
-        return this.estado == 3 || this.estado == 1;
+        return this.estado == 2 || this.estado == 4;
     }
     
 }

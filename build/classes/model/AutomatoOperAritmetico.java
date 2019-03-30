@@ -5,31 +5,35 @@
  */
 package model;
 
-/** Implementa um automato que reconhece operadores relacionais.
+/** Automato que reconhece operadores aritméticos.
  *
  * @author sarah
  */
-public class AutomatoOperRelacionais extends Automato {
+public class AutomatoOperAritmetico extends Automato {
     
     
-    /** Verifica se c é aceito pelo automato que reconhece operadores relacionais.
+    /** Verifica se c é aceito pelo automato que reconhece operadores aritméticos.
      * 
      * @param  c
      * @return 
      */
-    public boolean isOperRelacional(char c){
+    public boolean isOperAritmetico(char c){
         
         switch(this.estado){
             
             case(0):{
                 
-                if(c == '!'){
-                    this.estado = 2;
+                if(c == '*' || c == '/'){
+                    this.estado = 3;
                     return true;
                     
-                }else if( c == '<' || c == '>' | c == '='){
+                }else if( c == '+'){
                     this.estado = 1;
                     return true;
+                    
+                 }else if( c == '-'){
+                    this.estado = 2;
+                    return true;    
                     
                 }else{
                     return false;
@@ -37,7 +41,7 @@ public class AutomatoOperRelacionais extends Automato {
             }
             case(1):{
                 
-                if(c== '='){
+                if(c== '+'){
                     this.estado = 3;
                     return true;
                     
@@ -49,12 +53,11 @@ public class AutomatoOperRelacionais extends Automato {
             
             case(2):{
                 
-                if( c == '='){
+                if( c == '-'){
                     this.estado = 3;
                     return true;
                     
                 } else{
-                	this.resetAutomato();
                     return false;
                 }
             }
@@ -73,7 +76,7 @@ public class AutomatoOperRelacionais extends Automato {
 
     @Override
     public boolean isEstadoFinal() {
-        return this.estado == 3 || this.estado == 1;
+        return this.estado == 3 || this.estado == 1 || this.estado == 2;
     }
     
 }

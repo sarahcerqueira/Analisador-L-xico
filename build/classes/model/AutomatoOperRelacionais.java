@@ -54,7 +54,6 @@ public class AutomatoOperRelacionais extends Automato {
                     return true;
                     
                 } else{
-                	this.resetAutomato();
                     return false;
                 }
             }

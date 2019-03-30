@@ -48,19 +48,17 @@ public class AutomatoCadeiaCaractere extends Automato {
                     return true;
                     
                 } else{
-                	this.resetAutomato();
                     return false;
                 }           
             }
             
             case(2):{
                 
-             if( ascii > 31 && ascii < 127 ){  // Simbolos ascii [32, 126]
+                if(c == '"'){
                     this.estado = 1;
                     return true;
-                
+                    
                 }else {
-                	this.resetAutomato();
                     return false;
                 }
                     

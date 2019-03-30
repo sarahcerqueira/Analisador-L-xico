@@ -45,6 +45,7 @@ public class AutomatoOperLogico  extends Automato {
                     return true;
                     
                 }else {
+                	this.resetAutomato();
                     return false;
                 }
             
@@ -57,6 +58,7 @@ public class AutomatoOperLogico  extends Automato {
                     return true;
                     
                 } else{
+                	this.resetAutomato();
                     return false;
                 }
             }

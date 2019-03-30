@@ -46,6 +46,7 @@ public class AutomatoNumeros extends Automato {
                     this.estado = 2;
                     
                 }else {
+                	this.resetAutomato();
                     return false;
                 }
             
@@ -62,6 +63,7 @@ public class AutomatoNumeros extends Automato {
                 
                 }                
                 else{
+                	this.resetAutomato();
                     return false;
                 }
             }
@@ -72,8 +74,8 @@ public class AutomatoNumeros extends Automato {
                     this.estado = 4;
                     return true;
                 } else{
-            
-                return false;}
+                	this.resetAutomato();
+                	return false;}
             }
             
             case (4):{

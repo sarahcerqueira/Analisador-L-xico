@@ -12,7 +12,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,8 +38,7 @@ public class AnalisadorLexico {
      while(entradaFormatada.ready()){
          
         int c = entradaFormatada.read();
-        System.out.print((char)c + " "+ c + "\n" );}
-     
+        System.out.println((char)c);}
         
         
         // TODO code application logic here

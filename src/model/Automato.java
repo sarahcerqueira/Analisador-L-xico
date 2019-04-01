@@ -31,5 +31,16 @@ public abstract class Automato {
      * @return
      */
     public abstract boolean isEstadoFinal() ;
+    
+    /** 
+     * Verifica se o automato está em estado de erro.
+     * 
+     * @return
+     */
+    public boolean isEstadoErro() {
+    	return this.estado == -1;
+    	
+    }
+
 
 }

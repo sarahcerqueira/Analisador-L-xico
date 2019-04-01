@@ -12,11 +12,20 @@ public class AutomatoComentarioTest {
 		AutomatoComentario ac = new AutomatoComentario();
 		
 		assertFalse(ac.isComentario('a')); //Comentário começa obrigatóriamente por /
+		assertTrue(ac.isEstadoErro());
+		ac.resetAutomato();
 		assertFalse(ac.isComentario('3'));
+		assertTrue(ac.isEstadoErro());
+		ac.resetAutomato();
 		assertTrue(ac.isComentario('/')); //Carectere inicial válido
 		
 		assertFalse(ac.isComentario('x')); //Depois da primeira barra só é aceito outra / ou *
+		assertTrue(ac.isEstadoErro());
+		ac.resetAutomato();
 		assertFalse(ac.isComentario('a'));	//Automato tem que ser resetado
+		assertTrue(ac.isEstadoErro());
+		ac.resetAutomato();
+
 		assertTrue(ac.isComentario('/')); 
 		assertTrue(ac.isComentario('/')); 	//Comentário com //
 		
@@ -37,12 +46,14 @@ public class AutomatoComentarioTest {
 		assertTrue(ac.isComentario(' ')); 	//Aceita espaço
 		assertTrue(ac.isComentario('\n'));  //Aceita quebra de linha
 		
-		
-		assertFalse(ac.isComentario('r')); //Não aceita mais nenhum caractere pois está em estado final
 		assertTrue(ac.isEstadoFinal());		//Estado final
+		assertFalse(ac.isComentario('r')); //Não aceita mais nenhum caractere pois está em estado final
 		
 		ac.resetAutomato();
 		assertFalse(ac.isComentario('r')); //Se automato resetado, só aceita / como entrada inicial
+		assertTrue(ac.isEstadoErro());
+		ac.resetAutomato();
+
 		assertTrue(ac.isComentario('/')); 
 		assertTrue(ac.isComentario('/'));
 		assertTrue(ac.isComentario(' '));
@@ -50,11 +61,12 @@ public class AutomatoComentarioTest {
 		assertTrue(ac.isComentario('2'));
 		assertTrue(ac.isComentario('\r'));// Deve aceita \r como final também
 		
-		assertFalse(ac.isComentario('f')); //Não aceita mais nenhum caractere pois está em estado final
 		assertTrue(ac.isEstadoFinal());	
+		assertFalse(ac.isComentario('f')); //Não aceita mais nenhum caractere pois está em estado final
+		assertTrue(ac.isEstadoErro());
+
 		
 		ac.resetAutomato();
-		assertFalse(ac.isComentario('r')); 
 		assertTrue(ac.isComentario('/'));
 		assertTrue(ac.isComentario('*'));	//Comentário /*
 		
@@ -79,9 +91,10 @@ public class AutomatoComentarioTest {
 		assertTrue(ac.isComentario('*'));
 		assertTrue(ac.isComentario('/'));	//Fecha comentário
 		
-		assertFalse(ac.isComentario('b'));	//Estado final, não deve aceitar mais nada
 		assertTrue(ac.isEstadoFinal());
-		
+		assertFalse(ac.isComentario('b'));	//Estado final, não deve aceitar mais nada
+		assertTrue(ac.isEstadoErro());
+
 	}
 
 }

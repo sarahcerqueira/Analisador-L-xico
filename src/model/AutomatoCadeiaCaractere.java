@@ -29,9 +29,9 @@ public class AutomatoCadeiaCaractere extends Automato {
                 if (c == '"'){
                     this.estado = 1;
                     return true;
-                } else {
-                    return false;
-               }
+                } 
+                
+                break;
             }
             
             case (1):{
@@ -47,10 +47,9 @@ public class AutomatoCadeiaCaractere extends Automato {
                 } else if( ascii > 31 && ascii < 127 && ascii != 34){  // Simbolos ascii [32, 126]
                     return true;
                     
-                } else{
-                	this.resetAutomato();
-                    return false;
-                }           
+                } 
+                
+                break;
             }
             
             case(2):{
@@ -59,17 +58,19 @@ public class AutomatoCadeiaCaractere extends Automato {
                     this.estado = 1;
                     return true;
                 
-                }else {
-                	this.resetAutomato();
-                    return false;
                 }
+             
+             break;
                     
             }case(3):{
+        		this.estado = -1;
                 return false;
             }
         }
         
         
+        this.estado = -1;
+
     
     return false;
     }

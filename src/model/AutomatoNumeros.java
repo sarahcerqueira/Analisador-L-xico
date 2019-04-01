@@ -33,9 +33,9 @@ public class AutomatoNumeros extends Automato {
                     this.estado = 1;
                     return true;
    
-                }else{
-                    return false;
                 }
+                
+                break;
             }
             case(1):{
                 
@@ -44,11 +44,12 @@ public class AutomatoNumeros extends Automato {
                     
                 }else if(ascii> 47 && ascii< 58){
                     this.estado = 2;
+                    return true;
+
                     
-                }else {
-                	this.resetAutomato();
-                    return false;
                 }
+                
+                break;
             
             }
             
@@ -62,10 +63,8 @@ public class AutomatoNumeros extends Automato {
                     return true;
                 
                 }                
-                else{
-                	this.resetAutomato();
-                    return false;
-                }
+              
+                break;
             }
             
             case (3):{
@@ -73,24 +72,24 @@ public class AutomatoNumeros extends Automato {
                 if(ascii> 47 && ascii< 58){
                     this.estado = 4;
                     return true;
-                } else{
-                	this.resetAutomato();
-                	return false;}
+                } 
+                
+                break;
             }
             
             case (4):{
                 
                 if(ascii> 47 && ascii< 58){
                     return true;
-                } else{
-            
-                return false;}
+                } 
+                
+                break;
             
             }
             
         }
         
-        
+		this.estado = -1;
         return false;
     }
     

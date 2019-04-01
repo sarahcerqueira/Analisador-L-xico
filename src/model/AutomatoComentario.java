@@ -27,9 +27,9 @@ public class AutomatoComentario extends Automato {
                 if(c == '/'){
                     this.estado = 1;
                     return true;
-                }else{
-                    return false;
                 }
+                
+                break;
             }
             case(1):{
                 
@@ -41,11 +41,10 @@ public class AutomatoComentario extends Automato {
                     this.estado = 4;
                     return true;
                     
-                }else {
-                	this.resetAutomato();
-                    return false;
                 }
-            
+                
+                break;
+
             }
             
             case(2):{
@@ -82,12 +81,13 @@ public class AutomatoComentario extends Automato {
             	
             }
             case(5):{
+        		this.estado = -1;
             	return false;
             }
             
         }
         
-        
+		this.estado = -1;        
         return false;
     }
     

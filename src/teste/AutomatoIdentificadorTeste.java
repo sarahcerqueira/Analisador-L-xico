@@ -14,8 +14,16 @@ public class AutomatoIdentificadorTeste {
 		
 		//Apenas uma letra pode iniciar um identificador
 		assertFalse(ai.isIdentificador('3'));
+		assertTrue(ai.isEstadoErro());
+		ai.resetAutomato();
+
 		assertFalse(ai.isIdentificador('*'));
+		assertTrue(ai.isEstadoErro());
+		ai.resetAutomato();
+		
 		assertFalse(ai.isIdentificador('_'));
+		assertTrue(ai.isEstadoErro());
+		ai.resetAutomato();
 		
 		assertTrue(ai.isIdentificador('e'));
 		assertTrue(ai.isEstadoFinal());			//Após a primeira letra já entra em estado final
@@ -28,6 +36,8 @@ public class AutomatoIdentificadorTeste {
 		ai.resetAutomato();
 		assertTrue(ai.isIdentificador('r'));
 		assertFalse(ai.isIdentificador('{'));
+		assertTrue(ai.isEstadoErro());
+		ai.resetAutomato();
 		assertFalse(ai.isIdentificador('='));
 		
 		

@@ -13,9 +13,10 @@ public class AutomatoDelimitadorTeste {
 		AutomatoDelimitador ad = new AutomatoDelimitador();
 		
 		//Aceita ; , ( ) [ ] { } .
-		assertTrue(ad.isdelimitado(';'));	
-		assertFalse(ad.isdelimitado(';')); //Estado final
+		assertTrue(ad.isdelimitado(';'));
 		assertTrue(ad.isEstadoFinal());
+		assertFalse(ad.isdelimitado(';')); //Estado final
+		assertTrue(ad.isEstadoErro());
 		
 		ad.resetAutomato();
 		assertFalse(ad.isEstadoFinal());

@@ -27,9 +27,9 @@ public class AutomatoIdentificador extends Automato  {
                 if( (ascii > 96 && ascii < 123) || (ascii > 64 && ascii < 91) ){
                     this.estado = 1;
                     return true;
-                } else{
-                    return false;
-                }
+                } 
+                
+                break;
             }
             
             case(1):{
@@ -37,10 +37,15 @@ public class AutomatoIdentificador extends Automato  {
             // Letra minuscula em ascii [97,122]
             // Letra maiuscula em ascii [65,90]
             // Números em ascii [48, 57]
-            return (ascii > 96 && ascii < 123) || (ascii > 64 && ascii < 91) ||  (ascii > 47 && ascii < 58) || ascii == 95;
+            if ((ascii > 96 && ascii < 123) || (ascii > 64 && ascii < 91) ||  (ascii > 47 && ascii < 58) || ascii == 95) {
+            	return true;
+            }
+            
+            break;
             }
         }
         
+		this.estado = -1;
         return false;
         
     }

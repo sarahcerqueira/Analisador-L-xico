@@ -35,9 +35,9 @@ public class AutomatoOperAritmetico extends Automato {
                     this.estado = 2;
                     return true;    
                     
-                }else{
-                    return false;
                 }
+                
+                break;
             }
             case(1):{
                 
@@ -45,10 +45,9 @@ public class AutomatoOperAritmetico extends Automato {
                     this.estado = 3;
                     return true;
                     
-                }else {
-                    return false;
                 }
-            
+                
+                break;
             }
             
             case(2):{
@@ -57,19 +56,19 @@ public class AutomatoOperAritmetico extends Automato {
                     this.estado = 3;
                     return true;
                     
-                } else{
-                    return false;
-                }
+                } 
+                
+                break;
             }
             
             case (3):{
-            
+        		this.estado = -1;
                 return false;
             }
             
         }
         
-        
+		this.estado = -1;
         return false;
     }
     

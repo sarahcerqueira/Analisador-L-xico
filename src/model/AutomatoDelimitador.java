@@ -24,16 +24,15 @@ public class AutomatoDelimitador extends Automato {
             
             case(0):{
                 
-                if (c == ';' || c == ',' || c == '.' || c == '(' || c == ')'|| c == '[' || c == ']' || c == '{' || c == '}')
+                if (c == ';' || c == ',' || c == '.' || c == '(' || c == ')'|| c == '[' || c == ']' || c == '{' || c == '}') {
                     this.estado = 1;
-                    return true;
-            }
-            case(1):{
-            
-                return false;
+                    return true;}
+                
+                break;
             }
         }
 
+		this.estado = -1;
         return false;
 
     }

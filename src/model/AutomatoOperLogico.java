@@ -34,20 +34,22 @@ public class AutomatoOperLogico  extends Automato {
                     this.estado = 2;
                     return true;
                     
-                }else{
-                    return false;
                 }
-            }
+                
+                
+                break;
+                
+                }
+            
             case(1):{
                 
                 if(c== '&'){
                     this.estado = 3;
                     return true;
                     
-                }else {
-                	this.resetAutomato();
-                    return false;
                 }
+                
+                break;
             
             }
             
@@ -57,20 +59,14 @@ public class AutomatoOperLogico  extends Automato {
                     this.estado = 3;
                     return true;
                     
-                } else{
-                	this.resetAutomato();
-                    return false;
-                }
-            }
-            
-            case (3):{
-            
-                return false;
+                } 
+                
+                break;
             }
             
         }
         
-        
+		this.estado = -1;
         return false;
     }
     

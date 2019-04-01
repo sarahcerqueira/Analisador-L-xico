@@ -13,8 +13,16 @@ public class AutomatoNumerosTeste {
 		AutomatoNumeros au = new AutomatoNumeros();
 		
 		assertFalse(au.isNumero('a'));
+		assertTrue(au.isEstadoErro());
+		au.resetAutomato();
+		
 		assertFalse(au.isNumero('*'));
+		assertTrue(au.isEstadoErro());
+		au.resetAutomato();
+
 		assertFalse(au.isNumero('@'));
+		assertTrue(au.isEstadoErro());
+		au.resetAutomato();
 		
 		assertTrue(au.isNumero('4'));
 		assertTrue(au.isEstadoFinal());		//Aceita 4

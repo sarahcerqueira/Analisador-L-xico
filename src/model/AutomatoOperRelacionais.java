@@ -31,9 +31,9 @@ public class AutomatoOperRelacionais extends Automato {
                     this.estado = 1;
                     return true;
                     
-                }else{
-                    return false;
                 }
+                
+                break;
             }
             case(1):{
                 
@@ -41,9 +41,9 @@ public class AutomatoOperRelacionais extends Automato {
                     this.estado = 3;
                     return true;
                     
-                }else {
-                    return false;
                 }
+                
+                break;
             
             }
             
@@ -53,20 +53,15 @@ public class AutomatoOperRelacionais extends Automato {
                     this.estado = 3;
                     return true;
                     
-                } else{
-                	this.resetAutomato();
-                    return false;
-                }
+                } 
+                
+                break;
             }
             
-            case (3):{
-            
-                return false;
-            }
             
         }
         
-        
+		this.estado = -1;
         return false;
     }
     

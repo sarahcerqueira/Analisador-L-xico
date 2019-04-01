@@ -14,17 +14,41 @@ public class AutomatoOperLogicoTeste {
 		AutomatoOperLogico aol = new AutomatoOperLogico();
 		
 		assertFalse(aol.isOperLogico('b')); 		//Não aceita letra
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
+		
 		assertFalse(aol.isOperLogico('f'));
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
+		
 		assertFalse(aol.isOperLogico('w'));
-		assertFalse(aol.isEstadoFinal());
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
+				
 		assertFalse(aol.isOperLogico('*'));			//Não aceita simbolos que não são operadores logicos
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
+		
 		assertFalse(aol.isOperLogico('('));
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
+		
 		assertFalse(aol.isOperLogico('='));
-		assertFalse(aol.isEstadoFinal());
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
+		
 		assertFalse(aol.isOperLogico('9'));			//Não aceita digito
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
+		
 		assertFalse(aol.isOperLogico('7'));
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
+		
 		assertFalse(aol.isOperLogico('0'));
 		assertFalse(aol.isEstadoFinal());
+		assertTrue(aol.isEstadoErro());
+		aol.resetAutomato();
 
 		
 		assertTrue(aol.isOperLogico('!'));
@@ -36,6 +60,8 @@ public class AutomatoOperLogicoTeste {
 		assertTrue(aol.isOperLogico('&'));
 		assertFalse(aol.isEstadoFinal());			//Não aceita &
 		assertFalse(aol.isOperLogico('!'));			//Não aceita &!, reinicia
+		aol.resetAutomato();
+
 		
 		assertTrue(aol.isOperLogico('&'));
 		assertTrue(aol.isOperLogico('&'));	
@@ -47,6 +73,8 @@ public class AutomatoOperLogicoTeste {
 		assertTrue(aol.isOperLogico('|'));
 		assertFalse(aol.isEstadoFinal());			//Não aceita |
 		assertFalse(aol.isOperLogico('-'));			//Não aceita |-, reinicia
+		aol.resetAutomato();
+
 		
 		assertTrue(aol.isOperLogico('|'));
 		assertTrue(aol.isOperLogico('|'));	

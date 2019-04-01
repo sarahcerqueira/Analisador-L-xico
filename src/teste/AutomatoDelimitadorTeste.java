@@ -17,6 +17,33 @@ public class AutomatoDelimitadorTeste {
 		assertFalse(ad.isdelimitado(';')); //Estado final
 		assertTrue(ad.isEstadoFinal());
 		
+		ad.resetAutomato();
+		assertFalse(ad.isEstadoFinal());
+		assertTrue(ad.isdelimitado(','));
+		
+		ad.resetAutomato();
+		assertTrue(ad.isdelimitado('('));
+		
+		ad.resetAutomato();
+		assertTrue(ad.isdelimitado(')'));
+		
+		ad.resetAutomato();
+		assertTrue(ad.isdelimitado('['));
+		
+		ad.resetAutomato();
+		assertTrue(ad.isdelimitado(']'));
+		
+		ad.resetAutomato();
+		assertTrue(ad.isdelimitado('{'));
+		
+		ad.resetAutomato();
+		assertTrue(ad.isdelimitado('}'));
+		
+		ad.resetAutomato();
+		assertTrue(ad.isdelimitado('('));
+
+
+		
 		
 		
 	}

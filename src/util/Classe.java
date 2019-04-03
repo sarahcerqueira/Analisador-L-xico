@@ -11,8 +11,9 @@ package util;
  */
 public enum Classe {
    
-   NULL("NULL"), IDENTIFICADOR("identificador"), NUMERO("numero"), DELIMITADOR("delimitador"), CADEIA_DE_CARACTERES("cadeia de caracteres"),
-   COMENTARIO("comentario"), OPERADOR_LOGICO("operador logico"), OPERADOR_ARITMETICO("operador aritmetico"), OPERADOR_RELACIONAL("operador relacional");
+   NULL("NULL"), ERRO("erro"), IDENTIFICADOR("identificador"), NUMERO("numero"), DELIMITADOR("delimitador"), CADEIA_DE_CARACTERES("cadeia de caracteres"),
+   COMENTARIO("comentario"), OPERADOR_LOGICO("operador logico"), OPERADOR_ARITMETICO("operador aritmetico"), OPERADOR_RELACIONAL("operador relacional"),
+   PALAVRA_RESERVADA("palavra reservada");
    //Classes disponíveis 
     
     

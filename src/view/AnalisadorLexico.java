@@ -18,9 +18,11 @@ import model.AutomatoNumeros;
 import model.AutomatoOperAritmetico;
 import model.AutomatoOperLogico;
 import model.AutomatoOperRelacionais;
+import util.Classe;
 import util.ManipuladorDeArquivo;
 import util.Modo;
 import util.ModoException;
+import util.PalavraReservada;
 import util.Token;
 
 /**
@@ -39,20 +41,17 @@ public class AnalisadorLexico {
 	private AutomatoOperRelacionais relacional;
 	private ArrayList<Token> listaDeTokens;
 	private ArrayList<Token> listaDeErro;
-	private ArrayList<String> palavraReservada;
 
 	private int linha = 1;
-	private String classe;
+	private Classe classe;
 	private char c;
 
 	public void executar() throws FileNotFoundException, IOException, ModoException {
 
 		listaDeTokens = new ArrayList<>();
 		listaDeErro = new ArrayList<>();
-		palavraReservada = new ArrayList<>();
-		this.classe = "NULL";
-		this.startPalavraRevervada();
-
+		this.classe = Classe.NULL;
+		
 		boolean ativo;
 
 		ManipuladorDeArquivo leitura = new ManipuladorDeArquivo("testesah.txt", Modo.LEITURA);
@@ -70,7 +69,7 @@ public class AnalisadorLexico {
 				if (!this.classe.equals("NULL")) {
 					classificaToken();}
 				this.resetarAutomatos();
-				this.classe = "NULL";
+				this.classe = Classe.NULL;
 				ativo = true;
 
 
@@ -78,66 +77,66 @@ public class AnalisadorLexico {
 				
 				if (!this.classe.equals("NULL")) {
 					classificaToken();}
-				classe = "DELIMITADOR";
+				classe = Classe.DELIMITADOR;
 				classificaToken();
 				this.resetarAutomatos();
-				this.classe = "NULL";
+				this.classe = Classe.NULL;
 				ativo = true;
 
 
 			} else if (this.aritmetico.isOperAritmetico(c)) {
 
-				if (!this.classe.equals("NULL")) {
+				if (!this.classe.equals(Classe.NULL)) {
 					classificaToken();}
-				classe = "OPERADOR ARITMETICO";
+				classe = Classe.OPERADOR_ARITMETICO;
 				classificaToken();
 				this.resetarAutomatos();
-				this.classe = "NULL";
+				this.classe = Classe.NULL;
 				ativo = true;
 
 			} else if (this.logico.isOperLogico(c)) {
 				
-				if (!this.classe.equals("NULL")) {
+				if (!this.classe.equals(Classe.NULL)) {
 					classificaToken();}
 				
-				classe = "OPERADOR LOGICO";
+				classe = Classe.OPERADOR_LOGICO;
 				classificaToken();
 				this.resetarAutomatos();
-				this.classe = "NULL";
+				this.classe = Classe.NULL;
 				ativo = true;
 
 			} else if (this.relacional.isOperRelacional(c)) {
 				
-				if (!this.classe.equals("NULL")) {
+				if (!this.classe.equals(Classe.NULL)) {
 					classificaToken();}
-				classe = "OPERADOR RELACIONAL";
+				classe = Classe.OPERADOR_RELACIONAL;
 				classificaToken();
 				this.resetarAutomatos();
-				this.classe = "NULL";
+				this.classe = Classe.NULL;
 				ativo = true;
 
 			} else {
 
 				if ( c != '\r' && c != '\n' && this.identificador.isIdentificador(c)) {
-					classe = "IDENTIFICADOR";
+					classe = Classe.IDENTIFICADOR;
 					ativo = true;
 
 				}
 
 				if (this.numero.isNumero(c)) {
-					classe = "NUMERO";
+					classe = Classe.NUMERO;
 					ativo = true;
 
 				}
 
 				if (this.cadeia.isCadeiaCaractere(c)) {
-					classe = "CADEIA DE CARACTERES";
+					classe = Classe.CADEIA_DE_CARACTERES;
 					ativo = true;
 
 				}
 
 				if (this.comentario.isComentario(c)) {
-					classe = "COMENTARIO";
+					classe = Classe.COMENTARIO;
 					ativo = true;
 
 				}
@@ -151,11 +150,11 @@ public class AnalisadorLexico {
 				if (c == '\n') {
 					linha++;}
 
-				if (!this.classe.equals("COMENTARIO") && !this.classe.equals("NULL") && c != '\n') {
+				if (!this.classe.equals(Classe.COMENTARIO) && !this.classe.equals(Classe.NULL) && c != '\n') {
 					classificaToken();
 					this.resetarAutomatos();
-					 this.classe = "NULL";
-				} else if (this.classe.equals("NULL")) {
+					 this.classe = Classe.NULL;
+				} else if (this.classe.equals(Classe.NULL)) {
 					this.resetarAutomatos();
 
 				}
@@ -167,7 +166,7 @@ public class AnalisadorLexico {
 			if (!ativo) {
 				classificaToken();
 				this.resetarAutomatos();
-				this.classe = "NULL";
+				this.classe = Classe.NULL;
 				
 			}
 			
@@ -215,7 +214,7 @@ public class AnalisadorLexico {
 		this.relacional.resetAutomato();
 	}
 
-	private Token createToken(String valor, String classe, int linha) {
+	private Token createToken(String valor, Classe classe, int linha) {
 		return new Token(valor, classe, linha);
 	}
 
@@ -224,13 +223,15 @@ public class AnalisadorLexico {
 		String lexema = "NULL";
 		boolean erro = false;
 
-		switch (this.classe) {
+                String classificacao = classe.getClasse();
+                
+		switch (classificacao) {
 		case "IDENTIFICADOR":
 			lexema = identificador.getLexema();
 			erro = identificador.isEstadoErro();
 			
-			if(this.palavraReservada.contains(lexema)) {
-				this.classe= "PALAVRA RESERVADA";
+			if(this.checarPalavraReservada(lexema)) {
+				this.classe = Classe.PALAVRA_RESERVADA; 
 			}
 			
 			
@@ -283,21 +284,36 @@ public class AnalisadorLexico {
 		if (c != '\n' && c != '\r') {
 			lexema += Character.toString(c);
 		}
-		this.classe = "Erro";
+		this.classe = Classe.ERRO;
 		Token t = createToken(lexema, this.classe, this.linha);
 		this.listaDeErro.add(t);
 
 	}
 	
-	private void startPalavraRevervada() {
-		
-		this.palavraReservada.add("variaveis");
-		this.palavraReservada.add("se");
-		this.palavraReservada.add("enquanto");
+        private boolean checarPalavraReservada(String lexema){
+            
+            return (    lexema.equals(PalavraReservada.BOOLEANO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.CONSTANTES.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.ENQUANTO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.ENTAO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.ESCREVA.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.FALSO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.INTEIRO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.LEIA.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.METODO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.PRINCIPAL.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.PROGRAMA.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.REAL.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.RESULTADO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.SE.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.SENAO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.TEXTO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.VARIAVEIS.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.VAZIO.getPalavraReservada()) ||
+                        lexema.equals(PalavraReservada.VERDADEIRO.getPalavraReservada())    );
+                        
+            
+        }
 
-
-		
-		
-	}
 
 }

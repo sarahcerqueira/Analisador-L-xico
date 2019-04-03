@@ -1,0 +1,17 @@
+double a = -  		30.432; //tem um TAB no meio aqui
+se (a == -30.432) == verdadeiro //deu ruim  
+entao 
+	float b = -22.4 /*esse aqui tá ok (e tem outro tab ali)*/
+	
+inteiro[] vetor = new inteiro[3];
+inteiro[0] = 3;
+inteiro[1] = 5;
+inteiro[2] = -1;
+
+String s = "ADDI r2, r1, 20"
+
+se ((2++2)!=4)
+entao
+	resultado = inteiro[0]*a/inteiro[1] -inteiro[2];
+§end.
+ 

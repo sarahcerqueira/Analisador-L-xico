@@ -10,7 +10,13 @@ package model;
  *
  * @author sara
  */
-public class AutomatoDelimitador extends Automato {
+public class AutomatoDelimitador {
+	
+	private String lexema;
+	
+	public AutomatoDelimitador() {
+		this.lexema = new String("");
+	}
     
     
     /** Verifica se um determinado caractere é um um delimitador.
@@ -19,28 +25,25 @@ public class AutomatoDelimitador extends Automato {
      * @return 
      */
     public boolean isdelimitado(char c) {
-        
-        switch(this.estado){
-            
-            case(0):{
-                
-                if (c == ';' || c == ',' || c == '.' || c == '(' || c == ')'|| c == '[' || c == ']' || c == '{' || c == '}') {
-                    this.estado = 1;
-                    return true;}
-                
-                break;
-            }
-        }
-
-		this.estado = -1;
-        return false;
+    	
+    	if(c == ';' || c == ',' || c == '.' || c == '(' || c == ')'|| c == '[' || c == ']' || c == '{' || c == '}') { 
+    	this.lexema += Character.toString(c);
+        return true;}
+    	
+    	return false;
+                 
 
     }
-
     
-    public boolean isEstadoFinal() {
-        return this.estado == 1;
+    public String getLexema() {
+    	
+    	return this.lexema;
     }
+    
+    public void resetAutomato() {
+    	this.lexema = "";
+    }
+
     
 
 }

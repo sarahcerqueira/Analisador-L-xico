@@ -1,0 +1,37 @@
+//Teste do analisador léxico
+
+real a,b,c;
+
+a = 10.2;
+b = 2;
+c = 3.;
+
+c = a + b * a;
+
+b = b++;
+
+/* Vamos testar
+a cadeia de caractere */
+
+texto frase;
+
+se ( a => 10 && b == 3){
+
+	frase = "Vou bugar teu código em 3, 2.. 1... :D !"
+
+} senao[]
+
+a = 3.9.8,
+b = b--.
+
+frase = " ç á ê Ì'
+
+
+
+
+
+
+
+
+
+

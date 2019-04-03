@@ -25,14 +25,17 @@ public class AutomatoOperAritmetico extends Automato {
                 
                 if(c == '*' || c == '/'){
                     this.estado = 3;
+                    this.concat(c);
                     return true;
                     
                 }else if( c == '+'){
                     this.estado = 1;
+                    this.concat(c);
                     return true;
                     
                  }else if( c == '-'){
                     this.estado = 2;
+                    this.concat(c);
                     return true;    
                     
                 }
@@ -43,6 +46,7 @@ public class AutomatoOperAritmetico extends Automato {
                 
                 if(c== '+'){
                     this.estado = 3;
+                    this.concat(c);
                     return true;
                     
                 }
@@ -54,6 +58,7 @@ public class AutomatoOperAritmetico extends Automato {
                 
                 if( c == '-'){
                     this.estado = 3;
+                    this.concat(c);
                     return true;
                     
                 } 
@@ -63,6 +68,7 @@ public class AutomatoOperAritmetico extends Automato {
             
             case (3):{
         		this.estado = -1;
+        		
                 return false;
             }
             

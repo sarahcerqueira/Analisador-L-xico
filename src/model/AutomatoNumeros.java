@@ -27,10 +27,12 @@ public class AutomatoNumeros extends Automato {
                 
                 if(ascii> 47 && ascii< 58){
                     this.estado = 2;
+                    this.concat(c);
                     return true;
                     
                 }else if( c == '-' || c == ' '){
                     this.estado = 1;
+                    this.concat(c);
                     return true;
    
                 }
@@ -40,9 +42,11 @@ public class AutomatoNumeros extends Automato {
             case(1):{
                 
                 if(c== ' '){
+                    this.concat(c);
                     return true;
                     
                 }else if(ascii> 47 && ascii< 58){
+                    this.concat(c);
                     this.estado = 2;
                     return true;
 
@@ -56,9 +60,11 @@ public class AutomatoNumeros extends Automato {
             case(2):{
                 
                 if( ascii> 47 && ascii< 58){
+                    this.concat(c);
                     return true;
                     
                 } else if(c == '.'){
+                    this.concat(c);
                     this.estado = 3;
                     return true;
                 
@@ -70,6 +76,7 @@ public class AutomatoNumeros extends Automato {
             case (3):{
                 
                 if(ascii> 47 && ascii< 58){
+                    this.concat(c);
                     this.estado = 4;
                     return true;
                 } 
@@ -80,6 +87,8 @@ public class AutomatoNumeros extends Automato {
             case (4):{
                 
                 if(ascii> 47 && ascii< 58){
+                    this.concat(c);
+
                     return true;
                 } 
                 

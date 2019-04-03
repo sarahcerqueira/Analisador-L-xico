@@ -39,11 +39,12 @@ public class ManipuladorDeArquivo {
     public ManipuladorDeArquivo(String nomedoarquivo, Modo modo) throws FileNotFoundException, IOException {
 
         if (modo.getModo().equalsIgnoreCase("leitura")) {
-
+        	this.modo = modo;
             abreArquivo(nomedoarquivo);
             this.escrevearq = null;
             this.arquivo = null;
         } else {
+        	this.modo = modo;
             criarArquivo(nomedoarquivo);
             this.canal = null;
             this.scanner = null;

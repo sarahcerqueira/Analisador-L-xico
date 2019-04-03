@@ -26,6 +26,7 @@ public class AutomatoIdentificador extends Automato  {
                 // O intervalo de [97, 122] letras minúsculas em Ascii e [65,90] letras maiúsculas.
                 if( (ascii > 96 && ascii < 123) || (ascii > 64 && ascii < 91) ){
                     this.estado = 1;
+                    this.concat(c);
                     return true;
                 } 
                 
@@ -38,6 +39,7 @@ public class AutomatoIdentificador extends Automato  {
             // Letra maiuscula em ascii [65,90]
             // Números em ascii [48, 57]
             if ((ascii > 96 && ascii < 123) || (ascii > 64 && ascii < 91) ||  (ascii > 47 && ascii < 58) || ascii == 95) {
+                this.concat(c);
             	return true;
             }
             

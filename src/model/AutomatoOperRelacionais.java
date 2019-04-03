@@ -25,9 +25,11 @@ public class AutomatoOperRelacionais extends Automato {
                 
                 if(c == '!'){
                     this.estado = 2;
+                    this.concat(c);
                     return true;
                     
                 }else if( c == '<' || c == '>' | c == '='){
+                	this.concat(c);
                     this.estado = 1;
                     return true;
                     
@@ -39,6 +41,7 @@ public class AutomatoOperRelacionais extends Automato {
                 
                 if(c== '='){
                     this.estado = 3;
+                    this.concat(c);
                     return true;
                     
                 }
@@ -51,6 +54,7 @@ public class AutomatoOperRelacionais extends Automato {
                 
                 if( c == '='){
                     this.estado = 3;
+                    this.concat(c);
                     return true;
                     
                 } 

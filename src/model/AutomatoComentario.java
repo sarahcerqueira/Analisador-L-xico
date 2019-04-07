@@ -19,7 +19,6 @@ public class AutomatoComentario extends Automato {
 	 */
 	public boolean isComentario(char c) {
 
-		int ascii = (int) c;
 
 		switch (this.estado) {
 
@@ -27,7 +26,6 @@ public class AutomatoComentario extends Automato {
 
 			if (c == '/') {
 				this.estado = 1;
-				this.concat(c);
 				return true;
 			}
 
@@ -37,12 +35,10 @@ public class AutomatoComentario extends Automato {
 
 			if (c == '*') {
 				this.estado = 2;
-				this.concat(c);
 				return true;
 
 			} else if (c == '/') {
 				this.estado = 4;
-				this.concat(c);
 				return true;
 
 			}
@@ -56,9 +52,8 @@ public class AutomatoComentario extends Automato {
 			if (c == '*') {
 				this.estado = 3;
 
-			}
+			} 			
 
-			this.concat(c);
 			return true;
 
 		}
@@ -72,19 +67,17 @@ public class AutomatoComentario extends Automato {
 				this.estado = 2;
 			}
 			
-            this.concat(c);
             return true;
 		}
 
 		case (4): {
 			
 
-			if (ascii == 13 || ascii == 10) {
+			if (c == '\r') {
+				
 				this.estado = 5;
 
-			} else {
-			
-			this.concat(c);}
+			} 
 			return true;
 			
 			

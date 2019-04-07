@@ -28,7 +28,6 @@ public class AutomatoCadeiaCaractere extends Automato {
                 
                 if (c == '"'){
                     this.estado = 1;
-                    this.concat(c);
                     return true;
                 } 
                 
@@ -39,17 +38,14 @@ public class AutomatoCadeiaCaractere extends Automato {
                 
                 if (c == '"'){
                     this.estado = 3;
-                    this.concat(c);
 
                     return true;
                     
                 } else if( c == '\\'){
                     this.estado = 2;
-                    this.concat(c);
                     return true;
                     
                 } else if( ascii > 31 && ascii < 127 && ascii != 34){  // Simbolos ascii [32, 126]
-                    this.concat(c);
                     return true;
                     
                 } 
@@ -61,7 +57,6 @@ public class AutomatoCadeiaCaractere extends Automato {
                 
              if( ascii > 31 && ascii < 127 ){  // Simbolos ascii [32, 126]
                     this.estado = 1;
-                    this.concat(c);
                     return true;
                 
                 }

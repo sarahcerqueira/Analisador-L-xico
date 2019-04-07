@@ -11,13 +11,10 @@ package model;
  */
 public abstract class Automato {
 
-    protected int estado;
-    protected String lexema;
-    
+    protected int estado;    
     
     public Automato(){
         this.estado =0;
-        this.lexema = new String("");
     }
 
     /**
@@ -25,7 +22,6 @@ public abstract class Automato {
      */
     public void resetAutomato() {
         this.estado = 0;
-        this.lexema = "";
     }
 
     /**
@@ -45,14 +41,7 @@ public abstract class Automato {
     	
     }
     
-    public String getLexema() {
-    	
-    	return this.lexema;
-    }
-    
-    public void concat(char c) {
-    	this.lexema += Character.toString(c);
-    }
+
 
     
     

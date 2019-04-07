@@ -8,16 +8,12 @@ public class Compilador {
 
 	/**
      * @param args the command line arguments
+	 * @throws ModoException 
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ModoException {
     	
       AnalisadorLexico al = new AnalisadorLexico();
-      al.inicializar();
-      try {
-    	  al.executar();
-      } catch (ModoException e) {
-    	  e.printStackTrace();
-      }
+      al.executar("testesah.txt");
     	
     }
 	

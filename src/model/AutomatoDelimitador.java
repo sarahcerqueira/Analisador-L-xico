@@ -12,12 +12,6 @@ package model;
  */
 public class AutomatoDelimitador {
 	
-	private String lexema;
-	
-	public AutomatoDelimitador() {
-		this.lexema = new String("");
-	}
-    
     
     /** Verifica se um determinado caractere é um um delimitador.
      * 
@@ -27,7 +21,6 @@ public class AutomatoDelimitador {
     public boolean isdelimitado(char c) {
     	
     	if(c == ';' || c == ',' || c == '.' || c == '(' || c == ')'|| c == '[' || c == ']' || c == '{' || c == '}') { 
-    	this.lexema += Character.toString(c);
         return true;}
     	
     	return false;
@@ -35,14 +28,7 @@ public class AutomatoDelimitador {
 
     }
     
-    public String getLexema() {
-    	
-    	return this.lexema;
-    }
     
-    public void resetAutomato() {
-    	this.lexema = "";
-    }
 
     
 

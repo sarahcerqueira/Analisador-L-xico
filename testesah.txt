@@ -14,7 +14,6 @@ b = b++;
 a cadeia de caractere */
 
 texto frase;
-
 se ( a => 10 && b == 3){
 
 	frase = "Vou bugar teu código em 3, 2.. 1... :D !"

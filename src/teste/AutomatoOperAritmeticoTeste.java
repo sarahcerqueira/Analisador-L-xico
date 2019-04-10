@@ -1,4 +1,4 @@
-package teste;
+/*package teste;
 
 import static org.junit.Assert.*;
 
@@ -12,21 +12,21 @@ public class AutomatoOperAritmeticoTeste {
 	public void test() {
 		AutomatoOperAritmetico aoa = new AutomatoOperAritmetico();
 		
-		assertFalse(aoa.isOperAritmetico('a')); 		//Não aceita letra
+		assertFalse(aoa.isOperAritmetico('a')); 		//Nï¿½o aceita letra
 		assertTrue(aoa.isEstadoErro());
 		aoa.resetAutomato();
 		
-		assertFalse(aoa.isOperAritmetico('{'));			//Não aceita símbolos que não fazem oprrações aritimética
+		assertFalse(aoa.isOperAritmetico('{'));			//Nï¿½o aceita sï¿½mbolos que nï¿½o fazem oprraï¿½ï¿½es aritimï¿½tica
 		assertTrue(aoa.isEstadoErro());
 		aoa.resetAutomato();
 		
-		assertFalse(aoa.isOperAritmetico('ç'));			//Não aceita letras com acentuação
+		assertFalse(aoa.isOperAritmetico('ï¿½'));			//Nï¿½o aceita letras com acentuaï¿½ï¿½o
 		assertTrue(aoa.isEstadoErro());
 		aoa.resetAutomato();
 		
 		assertTrue(aoa.isOperAritmetico('*'));			
 		assertTrue(aoa.isEstadoFinal());				//Aceita *
-		assertFalse(aoa.isOperAritmetico('2'));			//Não aceita digito
+		assertFalse(aoa.isOperAritmetico('2'));			//Nï¿½o aceita digito
 		assertTrue(aoa.isEstadoErro());
 
 		
@@ -53,4 +53,4 @@ public class AutomatoOperAritmeticoTeste {
 		
 	}
 
-}
+}*/

@@ -1,4 +1,4 @@
-package teste;
+/*package teste;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -11,15 +11,15 @@ public class AutomatoComentarioTest {
 		
 		AutomatoComentario ac = new AutomatoComentario();
 		
-		assertFalse(ac.isComentario('a')); //Comentário começa obrigatóriamente por /
+		assertFalse(ac.isComentario('a')); //Comentï¿½rio comeï¿½a obrigatï¿½riamente por /
 		assertTrue(ac.isEstadoErro());
 		ac.resetAutomato();
 		assertFalse(ac.isComentario('3'));
 		assertTrue(ac.isEstadoErro());
 		ac.resetAutomato();
-		assertTrue(ac.isComentario('/')); //Carectere inicial válido
+		assertTrue(ac.isComentario('/')); //Carectere inicial vï¿½lido
 		
-		assertFalse(ac.isComentario('x')); //Depois da primeira barra só é aceito outra / ou *
+		assertFalse(ac.isComentario('x')); //Depois da primeira barra sï¿½ ï¿½ aceito outra / ou *
 		assertTrue(ac.isEstadoErro());
 		ac.resetAutomato();
 		assertFalse(ac.isComentario('a'));	//Automato tem que ser resetado
@@ -27,9 +27,9 @@ public class AutomatoComentarioTest {
 		ac.resetAutomato();
 
 		assertTrue(ac.isComentario('/')); 
-		assertTrue(ac.isComentario('/')); 	//Comentário com //
+		assertTrue(ac.isComentario('/')); 	//Comentï¿½rio com //
 		
-		//Depois de duas barras aceita qualquer coisa até entrar em \n
+		//Depois de duas barras aceita qualquer coisa atï¿½ entrar em \n
 		
 		assertTrue(ac.isComentario('/'));	//Aceita simbolos
 		assertTrue(ac.isComentario('*'));
@@ -37,20 +37,20 @@ public class AutomatoComentarioTest {
 		assertTrue(ac.isComentario(')'));
 		assertTrue(ac.isComentario('k'));	//Aceita Letras
 		assertTrue(ac.isComentario('P'));
-		assertFalse(ac.isEstadoFinal()); 	//Não está em estado final ainda
+		assertFalse(ac.isEstadoFinal()); 	//Nï¿½o estï¿½ em estado final ainda
 		assertTrue(ac.isComentario('e'));
 		assertTrue(ac.isComentario('9'));	//Aceita digitos
 		assertTrue(ac.isComentario('7'));
-		assertTrue(ac.isComentario('Ó'));	//Aceita acentuação
-		assertTrue(ac.isComentario('á'));
-		assertTrue(ac.isComentario(' ')); 	//Aceita espaço
+		assertTrue(ac.isComentario('ï¿½'));	//Aceita acentuaï¿½ï¿½o
+		assertTrue(ac.isComentario('ï¿½'));
+		assertTrue(ac.isComentario(' ')); 	//Aceita espaï¿½o
 		assertTrue(ac.isComentario('\n'));  //Aceita quebra de linha
 		
 		assertTrue(ac.isEstadoFinal());		//Estado final
-		assertFalse(ac.isComentario('r')); //Não aceita mais nenhum caractere pois está em estado final
+		assertFalse(ac.isComentario('r')); //Nï¿½o aceita mais nenhum caractere pois estï¿½ em estado final
 		
 		ac.resetAutomato();
-		assertFalse(ac.isComentario('r')); //Se automato resetado, só aceita / como entrada inicial
+		assertFalse(ac.isComentario('r')); //Se automato resetado, sï¿½ aceita / como entrada inicial
 		assertTrue(ac.isEstadoErro());
 		ac.resetAutomato();
 
@@ -59,16 +59,16 @@ public class AutomatoComentarioTest {
 		assertTrue(ac.isComentario(' '));
 		assertTrue(ac.isComentario('y'));
 		assertTrue(ac.isComentario('2'));
-		assertTrue(ac.isComentario('\r'));// Deve aceita \r como final também
+		assertTrue(ac.isComentario('\r'));// Deve aceita \r como final tambï¿½m
 		
 		assertTrue(ac.isEstadoFinal());	
-		assertFalse(ac.isComentario('f')); //Não aceita mais nenhum caractere pois está em estado final
+		assertFalse(ac.isComentario('f')); //Nï¿½o aceita mais nenhum caractere pois estï¿½ em estado final
 		assertTrue(ac.isEstadoErro());
 
 		
 		ac.resetAutomato();
 		assertTrue(ac.isComentario('/'));
-		assertTrue(ac.isComentario('*'));	//Comentário /*
+		assertTrue(ac.isComentario('*'));	//Comentï¿½rio /*
 		
 		assertTrue(ac.isComentario('/'));	//Aceita simbolos
 		assertTrue(ac.isComentario('*'));
@@ -78,23 +78,23 @@ public class AutomatoComentarioTest {
 		assertTrue(ac.isComentario('P'));
 		assertTrue(ac.isComentario('\n'));  //Aceita quebra de linha
 		assertTrue(ac.isComentario('\r'));
-		assertFalse(ac.isEstadoFinal()); 	//Não está em estado final ainda
+		assertFalse(ac.isEstadoFinal()); 	//Nï¿½o estï¿½ em estado final ainda
 		assertTrue(ac.isComentario('e'));
 		assertTrue(ac.isComentario('9'));	//Aceita digitos
 		assertTrue(ac.isComentario('7'));
-		assertTrue(ac.isComentario('Â'));	//Aceita acentuação
-		assertTrue(ac.isComentario('õ'));
-		assertTrue(ac.isComentario('ç'));
-		assertTrue(ac.isComentario(' ')); 	//Aceita espaço
+		assertTrue(ac.isComentario('ï¿½'));	//Aceita acentuaï¿½ï¿½o
+		assertTrue(ac.isComentario('ï¿½'));
+		assertTrue(ac.isComentario('ï¿½'));
+		assertTrue(ac.isComentario(' ')); 	//Aceita espaï¿½o
 		assertTrue(ac.isComentario('\n'));
 		
 		assertTrue(ac.isComentario('*'));
-		assertTrue(ac.isComentario('/'));	//Fecha comentário
+		assertTrue(ac.isComentario('/'));	//Fecha comentï¿½rio
 		
 		assertTrue(ac.isEstadoFinal());
-		assertFalse(ac.isComentario('b'));	//Estado final, não deve aceitar mais nada
+		assertFalse(ac.isComentario('b'));	//Estado final, nï¿½o deve aceitar mais nada
 		assertTrue(ac.isEstadoErro());
 
 	}
 
-}
+}*/

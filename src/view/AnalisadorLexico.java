@@ -25,7 +25,7 @@ import util.PalavraReservada;
 import util.Token;
 
 /**
- * Esta classe cumpre a tarefa de um analisador Léxico
+ * Esta classe cumpre a tarefa de um analisador Lï¿½xico
  *
  * @author User-PC
  */
@@ -50,7 +50,7 @@ public class AnalisadorLexico {
 		ManipuladorDeArquivo leitura = new ManipuladorDeArquivo(arquivo, Modo.LEITURA);
 
 		Classe classe = Classe.NULL; // Para Operadores e delimitadores
-		Classe classe1 = Classe.NULL; // Para comentários, Numeros, identificadores, cadeias
+		Classe classe1 = Classe.NULL; // Para comentï¿½rios, Numeros, identificadores, cadeias
 		char c;
 		char proximo = ' ';
 		boolean aceito = false; // Aceito, automato em estado final
@@ -121,7 +121,7 @@ public class AnalisadorLexico {
 					}
 				}
 				
-				//Checa se o caracter é um delimitador ou operador
+				//Checa se o caracter ï¿½ um delimitador ou operador
 				classe = this.isdelimitacao(c);
 				
 				if(!classe.equals(Classe.NULL)) {
@@ -336,7 +336,7 @@ public class AnalisadorLexico {
 
 		for (int i = 0; i < this.listaDeTokens.size(); i++) {
 			if (i == 0) {
-				System.out.println("Tokens Válidos\n\n");
+				System.out.println("Tokens Vï¿½lidos\n\n");
 			}
 			Token t = this.listaDeTokens.get(i);
 			System.out.println(t.getLinha() + " " + t.getValor() + " " + t.getClasse().getClasse());
@@ -344,7 +344,7 @@ public class AnalisadorLexico {
 
 		for (int i = 0; i < this.listaDeErro.size(); i++) {
 			if (i == 0) {
-				System.out.println("Tokens Inválidos\n\n");
+				System.out.println("Tokens Invï¿½lidos\n\n");
 			}
 			Token t = this.listaDeErro.get(i);
 			System.out.println(t.getLinha() + " " + t.getValor() + " " + t.getClasse().getClasse());
@@ -406,10 +406,13 @@ public class AnalisadorLexico {
 			if(classe.equals(Classe.COMENTARIO)) {
 				
 				this.lexema = this.lexema.replaceAll("\r", "");
-			}
+			}else if(classe.equals(Classe.IDENTIFICADOR) && isPalavraReservada(lexema)){
+                                classe = Classe.PALAVRA_RESERVADA;			
+                        }
 			
 			this.listaDeTokens.add(this.createToken(this.lexema, classe, linha));
-		} else {
+		
+                }else {
 			this.listaDeErro.add(this.createToken(this.lexema, classe, linha));
 		}
 
@@ -449,7 +452,7 @@ public class AnalisadorLexico {
 		return new Token(valor, classe, linha);
 	}
 
-	private boolean checarPalavraReservada(String lexema) {
+	private boolean isPalavraReservada(String lexema) {
 
 		return (lexema.equals(PalavraReservada.BOOLEANO.getPalavraReservada())
 				|| lexema.equals(PalavraReservada.CONSTANTES.getPalavraReservada())

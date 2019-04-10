@@ -1,4 +1,4 @@
-package teste;
+/*package teste;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +28,7 @@ public class AutomatoNumerosTeste {
 		assertTrue(au.isEstadoFinal());		//Aceita 4
 		
 		assertTrue(au.isNumero('.'));
-		assertFalse(au.isEstadoFinal());	//Não aceita 4.
+		assertFalse(au.isEstadoFinal());	//Nï¿½o aceita 4.
 		assertTrue(au.isNumero('1'));
 		assertTrue(au.isEstadoFinal());		//Aceita 4.1
 		assertTrue(au.isNumero('5'));		
@@ -38,16 +38,16 @@ public class AutomatoNumerosTeste {
 		assertFalse(au.isEstadoFinal());
 		
 		assertTrue(au.isNumero('-'));
-		assertFalse(au.isEstadoFinal());	//Não aceita somente -
+		assertFalse(au.isEstadoFinal());	//Nï¿½o aceita somente -
 		assertTrue(au.isNumero('2'));		
 		assertTrue(au.isEstadoFinal());		//Aceita -2
 		assertTrue(au.isNumero('4'));
 		assertTrue(au.isEstadoFinal());		//Aceita -24
 		assertTrue(au.isNumero('.'));
-		assertFalse(au.isEstadoFinal()); 	//Não aceita -24.
+		assertFalse(au.isEstadoFinal()); 	//Nï¿½o aceita -24.
 		assertTrue(au.isNumero('6'));
 		assertTrue(au.isEstadoFinal());		//Aceita -24.6
-		assertFalse(au.isNumero('.')); 		//Não aceita outro ponto
+		assertFalse(au.isNumero('.')); 		//Nï¿½o aceita outro ponto
 		
 		au.resetAutomato();
 		
@@ -58,4 +58,4 @@ public class AutomatoNumerosTeste {
 		
 	}
 
-}
+}*/

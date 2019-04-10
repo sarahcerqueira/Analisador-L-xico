@@ -1,4 +1,4 @@
-package teste;
+/*package teste;
 
 import static org.junit.Assert.*;
 
@@ -44,13 +44,13 @@ public class AutomatoOperRelacionaisTeste {
 		assertTrue(aor.isEstadoErro());
 		aor.resetAutomato();
 		
-		assertFalse(aor.isOperRelacional('ê'));
+		assertFalse(aor.isOperRelacional('ï¿½'));
 		assertTrue(aor.isEstadoErro());
 		aor.resetAutomato();
 		
 		assertTrue(aor.isOperRelacional('<'));
 		assertTrue(aor.isEstadoFinal());			//Aceita <
-		assertFalse(aor.isOperRelacional('-'));		//Não aceita <-
+		assertFalse(aor.isOperRelacional('-'));		//Nï¿½o aceita <-
 		
 		aor.resetAutomato();
 		
@@ -62,7 +62,7 @@ public class AutomatoOperRelacionaisTeste {
 		aor.resetAutomato();
 		
 		assertTrue(aor.isOperRelacional('='));
-		assertFalse(aor.isOperRelacional('<'));			// Não aceita =<
+		assertFalse(aor.isOperRelacional('<'));			// Nï¿½o aceita =<
 		
 		aor.resetAutomato();
 		
@@ -74,12 +74,12 @@ public class AutomatoOperRelacionaisTeste {
 		aor.resetAutomato();
 		
 		assertTrue(aor.isOperRelacional('='));
-		assertFalse(aor.isOperRelacional('>'));	// Não aceita =>
+		assertFalse(aor.isOperRelacional('>'));	// Nï¿½o aceita =>
 		
 		aor.resetAutomato();
 		
 		assertTrue(aor.isOperRelacional('!'));
-		assertFalse(aor.isEstadoFinal());			//Não aceita !
+		assertFalse(aor.isEstadoFinal());			//Nï¿½o aceita !
 		assertTrue(aor.isOperRelacional('='));
 		assertTrue(aor.isEstadoFinal());			//Aceita !=
 		
@@ -87,7 +87,7 @@ public class AutomatoOperRelacionaisTeste {
 		
 		assertTrue(aor.isOperRelacional('='));
 		assertTrue(aor.isEstadoFinal());			//Aceita =
-		assertFalse(aor.isOperRelacional('!'));		// Não aceita =!
+		assertFalse(aor.isOperRelacional('!'));		// Nï¿½o aceita =!
 		
 		aor.resetAutomato();
 		
@@ -100,4 +100,4 @@ public class AutomatoOperRelacionaisTeste {
 		
 	}
 
-}
+}*/

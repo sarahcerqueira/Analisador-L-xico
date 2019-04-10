@@ -1,4 +1,4 @@
-package teste;
+/*package teste;
 
 import static org.junit.Assert.*;
 
@@ -49,4 +49,4 @@ public class AutomatoDelimitadorTeste {
 		
 	}
 
-}
+}*/

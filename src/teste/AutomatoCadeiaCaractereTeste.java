@@ -1,4 +1,4 @@
-package teste;
+/*package teste;
 
 import static org.junit.Assert.*;
 
@@ -13,17 +13,17 @@ public class AutomatoCadeiaCaractereTeste {
 
 		AutomatoCadeiaCaractere acc = new AutomatoCadeiaCaractere();
 
-		assertFalse(acc.isCadeiaCaractere('a')); // O automato só aceita " como caracterer de entrada.
+		assertFalse(acc.isCadeiaCaractere('a')); // O automato sï¿½ aceita " como caracterer de entrada.
 		assertTrue(acc.isEstadoErro());
 		acc.resetAutomato();
 
 		assertTrue(acc.isCadeiaCaractere('"')); // Caractere inicial de uma cadeia.
-		assertFalse(acc.isEstadoFinal()); // Se é o primeiro caractere, não pode está em estado final.
+		assertFalse(acc.isEstadoFinal()); // Se ï¿½ o primeiro caractere, nï¿½o pode estï¿½ em estado final.
 		assertTrue(acc.isCadeiaCaractere('2')); // Aceita digito.
-		assertFalse(acc.isCadeiaCaractere('á')); // Esse caractere está fora do intervalo aceito.
+		assertFalse(acc.isCadeiaCaractere('ï¿½')); // Esse caractere estï¿½ fora do intervalo aceito.
 		assertTrue(acc.isEstadoErro());
 
-		// Não faz sentido o automato continuar se houve caractere não aceito então ele
+		// Nï¿½o faz sentido o automato continuar se houve caractere nï¿½o aceito entï¿½o ele
 		// entra em estado de erro e precisa ser resetado
 		acc.resetAutomato();
 		assertFalse(acc.isCadeiaCaractere('a'));
@@ -46,20 +46,20 @@ public class AutomatoCadeiaCaractereTeste {
 		assertTrue(acc.isEstadoFinal());
 
 
-		assertFalse(acc.isCadeiaCaractere('i')); // No estado final não aceita mais nada
+		assertFalse(acc.isCadeiaCaractere('i')); // No estado final nï¿½o aceita mais nada
 		assertTrue(acc.isEstadoErro());
 		acc.resetAutomato();
 
-		assertFalse(acc.isCadeiaCaractere('i')); // Se automato resetado volta ao inicio e só aceita " para começa
+		assertFalse(acc.isCadeiaCaractere('i')); // Se automato resetado volta ao inicio e sï¿½ aceita " para comeï¿½a
 		assertTrue(acc.isEstadoErro());
 		acc.resetAutomato();
 		assertTrue(acc.isCadeiaCaractere('"'));
 		assertTrue(acc.isCadeiaCaractere('i'));
-		assertFalse(acc.isCadeiaCaractere('ç'));
+		assertFalse(acc.isCadeiaCaractere('ï¿½'));
 		assertTrue(acc.isEstadoErro());
 		acc.resetAutomato();
 
 
 	}
 
-}
+}**/

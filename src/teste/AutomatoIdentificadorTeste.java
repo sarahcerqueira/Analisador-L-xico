@@ -1,4 +1,4 @@
-package teste;
+/*package teste;
 
 import static org.junit.Assert.*;
 
@@ -26,7 +26,7 @@ public class AutomatoIdentificadorTeste {
 		ai.resetAutomato();
 		
 		assertTrue(ai.isIdentificador('e'));
-		assertTrue(ai.isEstadoFinal());			//Após a primeira letra já entra em estado final
+		assertTrue(ai.isEstadoFinal());			//Apï¿½s a primeira letra jï¿½ entra em estado final
 		//Depois da primeira letra
 		assertTrue(ai.isIdentificador('U'));	//Pode receber mais letras
 		assertTrue(ai.isIdentificador('9'));	//Pode receber digito
@@ -43,4 +43,4 @@ public class AutomatoIdentificadorTeste {
 		
 	}
 
-}
+}*/

@@ -25,7 +25,7 @@ import util.PalavraReservada;
 import util.Token;
 
 /**
- * Esta classe cumpre a tarefa de um analisador Lï¿½xico
+ * Esta classe cumpre a tarefa de um analisador Lexico
  *
  * @author User-PC
  */
@@ -50,22 +50,30 @@ public class AnalisadorLexico {
 		ManipuladorDeArquivo leitura = new ManipuladorDeArquivo(arquivo, Modo.LEITURA);
 
 		Classe classe = Classe.NULL; // Para Operadores e delimitadores
-		Classe classe1 = Classe.NULL; // Para comentï¿½rios, Numeros, identificadores, cadeias
-		char c;
-		char proximo = ' ';
-		boolean aceito = false; // Aceito, automato em estado final
-		boolean ajuste = true; // Se proximo for usado
-		boolean ativo = false;
-		int linha = 1;
+		Classe classe1 = Classe.NULL; // Para comentarios, Numeros, identificadores, cadeias
+		
+		char c;					
+		char proximo = ' ';			//Próximo caractere
+		boolean aceito = false; 	// Aceito, automato em estado final
+		boolean ajuste = true; 		// Se proximo for usado
+		boolean ativo = false;		// Auxilia na verificação de erros
+		boolean fim = false;		//Flag auxiliar apar determian o fim da classificação
+		boolean loop = leitura.hasNextCaractere();		//verifica se há caractere há ser lido
+		int linha = 1;				//Conta as linhas
 
-		while (leitura.hasNextCaractere()) {
+		//Este loop faz todo processo de classificação
+		while (loop) {
+			
 			c = proximo;
 			proximo = leitura.nextCaractere();
 
+			// Se ajuste é falso significa que o próximo não foi utilizado em apenas um loop
 			if (!ajuste) {
+				
 				
 				if( c=='\r' || c =='\n' || c == '\t' ) {
 					
+					//Aceito significa que há um token salvar
 					if(aceito) {
 						this.classificao(classe1, linha);
 						this.resetLexema();
@@ -87,7 +95,7 @@ public class AnalisadorLexico {
 						
 					}
 					
-					if(!classe1.equals(Classe.COMENTARIO)) {
+					if(!classe1.equals(Classe.COMENTARIO) && !classe1.equals(Classe.CADEIA_DE_CARACTERES)) {
 						ativo = true;}
 					
 					
@@ -99,6 +107,7 @@ public class AnalisadorLexico {
 						classe1 = Classe.NULL;
 						this.resetAutomatos();
 						aceito = false;
+						
 					} else if(classe1.equals(Classe.ERRO)) {
 						this.classificao(classe1, linha);
 						this.resetLexema();
@@ -121,7 +130,7 @@ public class AnalisadorLexico {
 					}
 				}
 				
-				//Checa se o caracter ï¿½ um delimitador ou operador
+				//Checa se o caracter é um delimitador ou operador
 				classe = this.isdelimitacao(c);
 				
 				if(!classe.equals(Classe.NULL)) {
@@ -141,18 +150,27 @@ public class AnalisadorLexico {
 						classe1 = Classe.NULL;
 						this.resetAutomatos();
 						aceito = false;
-					}else if(!classe1.equals(Classe.NULL)) {
+						
+					}else if(!classe1.equals(Classe.NULL) && !classe1.equals(Classe.COMENTARIO)
+							&& !classe1.equals(Classe.CADEIA_DE_CARACTERES)) {
 						classe1 = Classe.ERRO;
 						this.classificao(classe1, linha);
 						this.resetLexema();
 						classe1 = Classe.NULL;
 						this.resetAutomatos();
+					} 
+				
+					if((!classe1.equals(Classe.COMENTARIO) && !classe1.equals(Classe.CADEIA_DE_CARACTERES))  || 
+							(classe1.equals(Classe.COMENTARIO) && aceito) ||(classe1.equals(Classe.CADEIA_DE_CARACTERES) && aceito) ){
+							
+						this.concat(c);
+						this.classificao(classe, linha);
+						this.resetLexema();
+						
+					} else {
+						classe = Classe.NULL;
 					}
-				
-				
-					this.concat(c);
-					this.classificao(classe, linha);
-					this.resetLexema();
+					
 					break;
 
 				case ("OPERADOR LOGICO"):
@@ -163,7 +181,8 @@ public class AnalisadorLexico {
 						this.resetAutomatos();
 						aceito = false;
 
-					}else if(!classe1.equals(Classe.NULL)) {
+					}else if(!classe1.equals(Classe.NULL) && !classe1.equals(Classe.COMENTARIO)
+							&& !classe1.equals(Classe.CADEIA_DE_CARACTERES)) {
 						classe1 = Classe.ERRO;
 						this.classificao(classe1, linha);
 						this.resetLexema();
@@ -171,6 +190,8 @@ public class AnalisadorLexico {
 						this.resetAutomatos();
 					}
 				
+				if((!classe1.equals(Classe.COMENTARIO) && !classe1.equals(Classe.CADEIA_DE_CARACTERES))  || 
+						(classe1.equals(Classe.COMENTARIO) && aceito) ||(classe1.equals(Classe.CADEIA_DE_CARACTERES) && aceito) ){
 				
 					this.concat(c);
 					this.classificao(classe, linha);
@@ -182,8 +203,13 @@ public class AnalisadorLexico {
 						this.classificao(classe, linha);
 					}
 					
-					this.resetLexema();
+					this.resetLexema(); 
+					} else {
+						classe = Classe.NULL;
+					}
+					
 					break;
+					
 				case ("OPERADOR ARITMETICO"):
 
 					if (c == '/' && (proximo == '/' || proximo == '*')) {
@@ -201,7 +227,9 @@ public class AnalisadorLexico {
 						classe1 = Classe.NULL;
 						this.resetAutomatos();
 						aceito = false;
-					}else if(!classe1.equals(Classe.NULL)) {
+						
+					}else if(!classe1.equals(Classe.NULL) && !classe1.equals(Classe.COMENTARIO)
+							&& !classe1.equals(Classe.CADEIA_DE_CARACTERES)) {
 						classe1 = Classe.ERRO;
 						this.classificao(classe1, linha);
 						this.resetLexema();
@@ -209,6 +237,8 @@ public class AnalisadorLexico {
 						this.resetAutomatos();
 					}
 					
+					if((!classe1.equals(Classe.COMENTARIO) && !classe1.equals(Classe.CADEIA_DE_CARACTERES))  || 
+							(classe1.equals(Classe.COMENTARIO) && aceito) ||(classe1.equals(Classe.CADEIA_DE_CARACTERES) && aceito) ){
 					this.concat(c);
 					this.classificao(classe, linha);
 
@@ -219,6 +249,10 @@ public class AnalisadorLexico {
 						this.classificao(classe, linha);
 					}
 					this.resetLexema();
+					} else {
+						classe = Classe.NULL;
+					}
+					
 					break;
 
 				case ("OPERADOR RELACIONAL"):
@@ -227,13 +261,19 @@ public class AnalisadorLexico {
 						this.resetLexema();
 						this.resetAutomatos();
 						classe1 = Classe.NULL;
-					}else if(!classe1.equals(Classe.NULL)) {
+						aceito = false;
+
+					}else if(!classe1.equals(Classe.NULL) && !classe1.equals(Classe.COMENTARIO)
+							&& !classe1.equals(Classe.CADEIA_DE_CARACTERES)) {
 						classe1 = Classe.ERRO;
 						this.classificao(classe1, linha);
 						this.resetLexema();
 						classe1 = Classe.NULL;
 						this.resetAutomatos();
 					}
+				
+				if((!classe1.equals(Classe.COMENTARIO) && !classe1.equals(Classe.CADEIA_DE_CARACTERES))  || 
+						(classe1.equals(Classe.COMENTARIO) && aceito) ||(classe1.equals(Classe.CADEIA_DE_CARACTERES) && aceito) ){
 					
 					this.concat(c);
 
@@ -258,6 +298,9 @@ public class AnalisadorLexico {
 					}
 					
 					this.resetLexema();
+				}else {
+					classe = Classe.NULL;
+				}
 
 					break;
 
@@ -282,6 +325,14 @@ public class AnalisadorLexico {
 						}
 						
 						this.concat(c);
+						
+						if(fim && aceito) {
+							this.classificao(classe1, linha);
+							
+						} else if(fim && !aceito) {
+							this.classificao(Classe.ERRO, linha);
+
+						}
 	
 						break;
 					case ("IDENTIFICADOR"):
@@ -292,6 +343,14 @@ public class AnalisadorLexico {
 						}
 						
 						this.concat(c);
+						
+						if(fim && aceito) {
+							this.classificao(classe1, linha);
+							
+						} else if(fim && !aceito) {
+							this.classificao(Classe.ERRO, linha);
+
+						}
 	
 						break;
 					case ("NUMERO"):
@@ -302,6 +361,14 @@ public class AnalisadorLexico {
 						}
 					
 						this.concat(c);
+						
+						if(fim && aceito) {
+							this.classificao(classe1, linha);
+							
+						} else if(fim && !aceito) {
+							this.classificao(Classe.ERRO, linha);
+
+						}
 	
 						break;
 					case ("CADEIA DE CARACTERES"):
@@ -312,6 +379,14 @@ public class AnalisadorLexico {
 						}
 						
 						this.concat(c);
+						
+						if(fim && aceito) {
+							this.classificao(classe1, linha);
+							
+						} else if(fim && !aceito) {
+							this.classificao(Classe.ERRO, linha);
+
+						}
 	
 						break;
 					case ("NULL"):
@@ -332,23 +407,46 @@ public class AnalisadorLexico {
 			if(ativo) {
 				ativo = false;
 			}
+			
+			loop = leitura.hasNextCaractere();
+			
+
+			
+			if(!loop && !fim ) {
+				
+				fim = true;
+				loop = true;
+
+			} else if(!loop && fim ) {
+				loop = false;
+			}
 		}
+		leitura.fechaArquivo();
+		ManipuladorDeArquivo escrita = new ManipuladorDeArquivo(arquivo + ".saida", Modo.ESCRITA);
+
 
 		for (int i = 0; i < this.listaDeTokens.size(); i++) {
 			if (i == 0) {
-				System.out.println("Tokens Vï¿½lidos\n\n");
+				System.out.println("Tokens Válidos\n");
+				escrita.escreverArquivo("Tokens Válidos\r\n");
 			}
 			Token t = this.listaDeTokens.get(i);
 			System.out.println(t.getLinha() + " " + t.getValor() + " " + t.getClasse().getClasse());
+			escrita.escreverArquivo(t.getLinha() + " " + t.getValor() + " " + t.getClasse().getClasse()+ "\r\n");
 		}
 
 		for (int i = 0; i < this.listaDeErro.size(); i++) {
 			if (i == 0) {
-				System.out.println("Tokens Invï¿½lidos\n\n");
+				System.out.println("\nTokens Inválidos\n");
+				escrita.escreverArquivo("\r\nTokens Inválidos\r\n");
 			}
 			Token t = this.listaDeErro.get(i);
 			System.out.println(t.getLinha() + " " + t.getValor() + " " + t.getClasse().getClasse());
+			escrita.escreverArquivo(t.getLinha() + " " + t.getValor() + " " + t.getClasse().getClasse() + "\r\n");
+
 		}
+		
+		escrita.fechaArquivo();
 
 	}
 
@@ -390,6 +488,16 @@ public class AnalisadorLexico {
 			return Classe.COMENTARIO;
 
 		} else if (ascii > 47 && ascii < 58) {
+			
+			if(this.getToken(-1).getValor().equals("-") ) {
+				Classe cl = this.getToken(-2).getClasse();
+				
+				//Verifica se há - que oderia ser classificado como parte de um número
+				if(!cl.equals(Classe.NUMERO) && !cl.equals(Classe.IDENTIFICADOR)) {
+					this.listaDeTokens.remove(this.listaDeTokens.size()-1);
+					this.lexema = "-";
+				}
+			}
 			return Classe.NUMERO;
 
 		} else if ((ascii > 96 && ascii < 123) || (ascii > 64 && ascii < 91)) {
@@ -483,9 +591,13 @@ public class AnalisadorLexico {
 	private void resetLexema() {
 		this.lexema = "";
 	}
-
-	private void checaDelimitacao(Classe classe, int linha, char proximo) {
-
+	
+	private Token getToken(int index) {
+		Token t = this.listaDeTokens.get(this.listaDeTokens.size()+index);
+		
+		return t;
+		
 	}
+
 
 }

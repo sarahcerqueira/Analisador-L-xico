@@ -13,7 +13,7 @@ public class Compilador {
     public static void main(String[] args) throws IOException, ModoException {
     	
       AnalisadorLexico al = new AnalisadorLexico();
-      al.executar("testesah.txt");
+      al.executar("teste.txt");
     	
     }
 	
